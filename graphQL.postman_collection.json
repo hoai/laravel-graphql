@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "1fbfa261-039d-41e7-820c-c6937ca344bb",
+		"name": "graphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"hoaiv3n@gmail.com\",\r\n    \"password\":\"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://lar.test/graphql/login",
+					"protocol": "http",
+					"host": [
+						"lar",
+						"test"
+					],
+					"path": [
+						"graphql",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwNiwiaXNzIjoiaHR0cDpcL1wvbGFyLnRlc3RcL2dyYXBocWxcL2xvZ2luIiwiaWF0IjoxNjAyMjE4NTI0LCJleHAiOjE2MDIyMjIxMjQsIm5iZiI6MTYwMjIxODUyNCwianRpIjoiWTBINUszWXlwRVRna3YyUyJ9.KR5Aux6XpAO5t2IyHTnxrJcUx9QnRLux6-wmwel23JU",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\":\"query getProfile {myProfile{id email}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://lar.test/graphql/query",
+					"protocol": "http",
+					"host": [
+						"lar",
+						"test"
+					],
+					"path": [
+						"graphql",
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,64 @@
+# Welcome to GraphiQL
+#
+# GraphiQL is an in-browser IDE for writing, validating, and
+# testing GraphQL queries.
+#
+# Type queries into this side of the screen, and you will
+# see intelligent typeaheads aware of the current GraphQL type schema and
+# live syntax and validation errors highlighted within the text.
+#
+# To bring up the auto-complete at any point, just press Ctrl-Space.
+#
+# Press the run button above, or Cmd-Enter to execute the query, and the result
+# will appear in the pane to the right.
+query FetchProducts {
+  products(id:"2"){
+    data {
+      id
+      title
+      price
+      product_images {
+        image
+      }
+    }
+    total
+    per_page
+  }
+}
+query fetchUsers {
+  users {
+    data {
+      name
+      user_profiles {
+        avatar
+      }
+    }
+    total
+    per_page
+  }
+}
+query getProfile {
+  myProfile{
+    id
+    email
+  }
+}
+mutation qNewUser{
+  newUser(
+    name: "hoai2"
+    email:"hoaiv3n@gmail.com"
+    password:"secret"
+    first_name:"van2"
+    last_name:"nguyen2"
+    avatar:"hoai.jpg"
+  ){
+    id
+    email
+    name
+    user_profiles{
+      first_name
+      last_name
+      avatar
+    }
+  }
+}
