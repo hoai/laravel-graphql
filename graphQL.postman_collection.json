@@ -41,9 +41,8 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwNiwiaXNzIjoiaHR0cDpcL1wvbGFyLnRlc3RcL2dyYXBocWxcL2xvZ2luIiwiaWF0IjoxNjAyMjE4NTI0LCJleHAiOjE2MDIyMjIxMjQsIm5iZiI6MTYwMjIxODUyNCwianRpIjoiWTBINUszWXlwRVRna3YyUyJ9.KR5Aux6XpAO5t2IyHTnxrJcUx9QnRLux6-wmwel23JU",
-						"type": "text",
-						"disabled": true
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwNiwiaXNzIjoiaHR0cDpcL1wvbGFyLnRlc3RcL2dyYXBocWxcL2xvZ2luIiwiaWF0IjoxNjAyNDc0NTE0LCJleHAiOjE2MDI0NzgxMTQsIm5iZiI6MTYwMjQ3NDUxNCwianRpIjoiNlhCT2xzWXdWZnhhTlpMTyJ9.Rcxxbrn1R8ab-N85lkQwesG6KXVoLjULVPuHofW_HTs",
+						"type": "text"
 					},
 					{
 						"key": "Content-Type",

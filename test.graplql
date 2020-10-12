@@ -12,7 +12,21 @@
 # Press the run button above, or Cmd-Enter to execute the query, and the result
 # will appear in the pane to the right.
 query FetchProducts {
-  products(id:"2"){
+  products (id:"2") {
+    data {
+      id
+      title
+      price
+      product_images {
+        image
+      }
+    }
+    total
+    per_page
+  }
+}
+query FetchProductsList {
+  products {
     data {
       id
       title
@@ -26,15 +40,36 @@ query FetchProducts {
   }
 }
 query fetchUsers {
-  users {
+  users (id: 1) {
     data {
+      id
+      email
       name
       user_profiles {
         avatar
+        first_name
+        last_name
       }
     }
     total
     per_page
+  }
+}
+
+query fetchUsersList {
+  users {
+      data {
+      	id
+      	email
+      	name
+      	user_profiles {
+        	avatar
+        	first_name
+        	last_name
+      	}
+      }
+    total
+    per_page      
   }
 }
 query getProfile {
