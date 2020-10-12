@@ -36,7 +36,7 @@ class ProductsQuery extends Query
 
     public function resolve($root, $args, SelectFields $fields)
     {
-        $where = function ($query) use ($args) {
+        /*$where = function ($query) use ($args) {
             if (isset($args['id'])) {
                 $query->where('id',$args['id']);
             }
@@ -44,10 +44,17 @@ class ProductsQuery extends Query
             if (isset($args['title'])) {
                 $query->where('title','like','%'.$args['title'].'%');
             }
-        };
+        };*/
+
+        if (isset($args['id'])) {
+            return Product::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();
+        }
+
+        if (isset($args['title'])) {
+            return Product::with(array_keys($fields->getRelations()))->where('title', $args['title'])->select($fields->getSelect())->paginate();
+        }
+
         $with = array_keys($fields->getRelations());
-        return Product::with($with)
-            ->where($where)
-            ->select($fields->getSelect())->paginate();
+        return Product::with($with)->select($fields->getSelect())->paginate();
     }
 }

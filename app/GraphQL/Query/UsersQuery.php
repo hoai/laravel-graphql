@@ -15,9 +15,10 @@ class UsersQuery extends Query
         'description' => 'A query of users'
     ];
 
-    public function type()
+    public function type(): Type
     {
         return GraphQL::paginate('users');
+        //return Type::listOf(GraphQL::type('users'));
     }
 
     public function args()
@@ -36,7 +37,7 @@ class UsersQuery extends Query
 
     public function resolve($root, $args, SelectFields $fields)
     {
-        $where = function ($query) use ($args) {
+        /*$where = function ($query) use ($args) {
             if (isset($args['id'])) {
                 $query->where('id',$args['id']);
             }
@@ -44,11 +45,17 @@ class UsersQuery extends Query
             if (isset($args['email'])) {
                 $query->where('email',$args['email']);
             }
-        };
-        $user =  User::with(array_keys($fields->getRelations()))
-            ->where($where)
-            ->select($fields->getSelect())->paginate();
+        };*/
+        //var_dump($where);exit;
+        if (isset($args['id'])) {
+            return User::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();
+        }
 
-        return $user;
+        if (isset($args['email'])) {
+            return User::with(array_keys($fields->getRelations()))->where('email', $args['email'])->select($fields->getSelect())->paginate();
+        }
+
+
+        return User::with(array_keys($fields->getRelations()))->select($fields->getSelect())->paginate();
     }
 }
