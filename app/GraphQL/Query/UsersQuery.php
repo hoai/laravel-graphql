@@ -45,10 +45,10 @@ class UsersQuery extends Query
                 $query->where('email',$args['email']);
             }
         };
-        $user = User::with(array_keys($fields->getRelations()))
+        $user =  User::with(array_keys($fields->getRelations()))
             ->where($where)
-            ->select($fields->getSelect())
-            ->paginate();
+            ->select($fields->getSelect())->paginate();
+
         return $user;
     }
 }

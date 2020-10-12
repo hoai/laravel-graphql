@@ -42,7 +42,7 @@ class ProductsQuery extends Query
             }
 
             if (isset($args['title'])) {
-                $query->where('title','like','%'.$args['email'].'%');
+                $query->where('title','like','%'.$args['title'].'%');
             }
         };
         $with = array_keys($fields->getRelations());
