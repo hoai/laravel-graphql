@@ -31,7 +31,15 @@ class UsersQuery extends Query
             'email' => [
                 'name' => 'email',
                 'type' => Type::string()
-            ]
+            ],
+            'limit' => [
+                'name' => 'limit',
+                'type' =>  Type::int()
+            ],
+            'page' => [
+                'name' => 'page',
+                'type' =>  Type::int()
+            ],
         ];
     }
 
@@ -56,6 +64,6 @@ class UsersQuery extends Query
         }
 
 
-        return User::with(array_keys($fields->getRelations()))->select($fields->getSelect())->paginate();
+        return User::with(array_keys($fields->getRelations()))->select($fields->getSelect())->paginate($args['limit'], ['*'], 'page', $args['page']);
     }
 }

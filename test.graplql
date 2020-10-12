@@ -26,7 +26,7 @@ query FetchProducts {
   }
 }
 query FetchProductsList {
-  products {
+  products(limit:10, page:2 ) {
     data {
       id
       title
@@ -37,6 +37,7 @@ query FetchProductsList {
     }
     total
     per_page
+    current_page
   }
 }
 query fetchUsers {
@@ -57,7 +58,7 @@ query fetchUsers {
 }
 
 query fetchUsersList {
-  users {
+  users (limit:4, page:3) {
       data {
       	id
       	email
@@ -80,12 +81,12 @@ query getProfile {
 }
 mutation qNewUser{
   newUser(
-    name: "hoai2"
-    email:"hoaiv3n@gmail.com"
+    name: "hoai4"
+    email:"hoaiv5n@gmail.com"
     password:"secret"
-    first_name:"van2"
-    last_name:"nguyen2"
-    avatar:"hoai.jpg"
+    first_name:"van22"
+    last_name:"nguyen22"
+    avatar:"hoai2.jpg"
   ){
     id
     email

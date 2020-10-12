@@ -30,7 +30,15 @@ class ProductsQuery extends Query
             'title' => [
                 'name' => 'title',
                 'type' => Type::string()
-            ]
+            ],
+            'limit' => [
+                'name' => 'limit',
+                'type' =>  Type::int()
+            ],
+            'page' => [
+                'name' => 'page',
+                'type' =>  Type::int()
+            ],
         ];
     }
 
@@ -55,6 +63,6 @@ class ProductsQuery extends Query
         }
 
         $with = array_keys($fields->getRelations());
-        return Product::with($with)->select($fields->getSelect())->paginate();
+        return Product::with($with)->select($fields->getSelect())->paginate($args['limit'], ['*'], 'page', $args['page']);
     }
 }
