@@ -28,7 +28,8 @@ class ProductsType extends GraphQLType
             ],
             'price' => [
                 'type' => Type::int(),
-                'description' => 'The price of product'
+                'description' => 'The price of product',
+                'deprecationReason' => 'Deprecated due to price field split'
             ],
             'description' => [
                 'type' => Type::string(),
