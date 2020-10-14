@@ -33,7 +33,11 @@ class UsersType extends GraphQLType
             'user_profiles' => [
                 'type' => GraphQL::type('user_profiles'),
                 'description' => 'The profile of the user'
-            ]
+            ],
+            'products' => [
+                'type' => Type::listOf(GraphQL::type('products')),
+                'description' => 'The products of the user'
+            ],
         ];
     }
 

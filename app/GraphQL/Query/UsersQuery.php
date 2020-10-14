@@ -54,9 +54,12 @@ class UsersQuery extends Query
                 $query->where('email',$args['email']);
             }
         };*/
-        //var_dump($where);exit;
+        //print_r(array_keys($fields->getRelations()));exit;
+
         if (isset($args['id'])) {
-            return User::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();
+            $mm =  User::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();
+            //var_export($mm);exit;
+            return $mm;
         }
 
         if (isset($args['email'])) {

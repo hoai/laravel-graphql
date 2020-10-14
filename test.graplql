@@ -11,6 +11,7 @@
 #
 # Press the run button above, or Cmd-Enter to execute the query, and the result
 # will appear in the pane to the right.
+
 query FetchProducts {
   products (id:"2") {
     data {
@@ -19,6 +20,11 @@ query FetchProducts {
       price
       product_images {
         image
+      }
+      users{
+        id
+        name
+        email
       }
     }
     total
@@ -34,6 +40,7 @@ query FetchProductsList {
       product_images {
         image
       }
+      user_id
     }
     total
     per_page
@@ -41,7 +48,94 @@ query FetchProductsList {
   }
 }
 query fetchUsers {
-  users (id: 1) {
+  users (id: 8) {
+    data {
+      id
+      email
+      name
+      user_profiles {
+        avatar
+        first_name
+        last_name
+      }
+      products{
+        id
+        title
+        price
+        users {
+          id
+          name
+        }
+      }
+    }
+    total
+    per_page
+  }
+}
+
+query fetchUsersList {
+  users (limit:40, page:1) {
+      data {
+      	id
+      	email
+      	name
+      	user_profiles {
+        	avatar
+        	first_name
+        	last_name
+      	}
+        products{
+        	title
+        }
+      }
+    total
+    per_page
+  }
+}
+query getProfile {
+  myProfile{
+    id
+    email
+  }
+}
+mutation qNewUser{
+  newUser(
+    name: "hoai7"
+    email:"hoaiv7n@gmail.com"
+    password:"secret"
+    first_name:"van27"
+    last_name:"nguyen27"
+    avatar:"hoai2.jpg"
+  ){
+    id
+    email
+    name
+    user_profiles{
+      first_name
+      last_name
+      avatar
+    }
+  }
+}
+
+query Complex {
+  products (id:"2") {
+    data {
+      id
+      title
+      price
+      product_images {
+        image
+      }
+      users{
+        id
+        name
+      }
+    }
+    total
+    per_page
+  }
+  users (id: 8) {
     data {
       id
       email
@@ -55,46 +149,5 @@ query fetchUsers {
     total
     per_page
   }
-}
 
-query fetchUsersList {
-  users (limit:4, page:3) {
-      data {
-      	id
-      	email
-      	name
-      	user_profiles {
-        	avatar
-        	first_name
-        	last_name
-      	}
-      }
-    total
-    per_page      
-  }
-}
-query getProfile {
-  myProfile{
-    id
-    email
-  }
-}
-mutation qNewUser{
-  newUser(
-    name: "hoai4"
-    email:"hoaiv5n@gmail.com"
-    password:"secret"
-    first_name:"van22"
-    last_name:"nguyen22"
-    avatar:"hoai2.jpg"
-  ){
-    id
-    email
-    name
-    user_profiles{
-      first_name
-      last_name
-      avatar
-    }
-  }
 }
