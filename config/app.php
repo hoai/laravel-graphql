@@ -179,7 +179,9 @@ return [
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Rebing\GraphQL\GraphQLServiceProvider::class,
         Graphiql\GraphiqlServiceProvider::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
 
     ],
 
@@ -229,6 +231,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class
+        'GraphQL' => Rebing\GraphQL\Support\Facades\GraphQL::class,
+        // Register Debugbar alias
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 ];
