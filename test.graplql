@@ -41,6 +41,11 @@ query FetchProductsList {
         image
       }
       user_id
+      users{
+        id
+        name
+        email
+      }
     }
     total
     per_page
@@ -92,6 +97,7 @@ query fetchUsersList {
     per_page
   }
 }
+
 query getProfile {
   myProfile{
     id
