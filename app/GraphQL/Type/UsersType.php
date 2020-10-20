@@ -28,7 +28,9 @@ class UsersType extends GraphQLType
             ],
             'name' => [
                 'type' => Type::string(),
-                'description' => 'The name of the user'
+                'description' => 'The name of the user',
+                'deprecationReason' => 'Deprecated due to name field'
+
             ],
             'user_profiles' => [
                 'type' => GraphQL::type('user_profiles'),

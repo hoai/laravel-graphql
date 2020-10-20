@@ -53,6 +53,7 @@ class ProductsQuery extends Query
                 $query->where('title','like','%'.$args['title'].'%');
             }
         };*/
+        //var_dump(array_keys($fields->getRelations()));exit;
 
         if (isset($args['id'])) {
             return Product::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();

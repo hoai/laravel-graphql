@@ -1,19 +1,5 @@
-# Welcome to GraphiQL
-#
-# GraphiQL is an in-browser IDE for writing, validating, and
-# testing GraphQL queries.
-#
-# Type queries into this side of the screen, and you will
-# see intelligent typeaheads aware of the current GraphQL type schema and
-# live syntax and validation errors highlighted within the text.
-#
-# To bring up the auto-complete at any point, just press Ctrl-Space.
-#
-# Press the run button above, or Cmd-Enter to execute the query, and the result
-# will appear in the pane to the right.
-
 query FetchProducts {
-  products (id:"2") {
+  products(id: "1") {
     data {
       id
       title
@@ -21,7 +7,7 @@ query FetchProducts {
       product_images {
         image
       }
-      users{
+      users {
         id
         name
         email
@@ -31,8 +17,9 @@ query FetchProducts {
     per_page
   }
 }
+
 query FetchProductsList {
-  products(limit:10, page:2 ) {
+  products(limit: 10, page: 2) {
     data {
       id
       title
@@ -41,7 +28,7 @@ query FetchProductsList {
         image
       }
       user_id
-      users{
+      users {
         id
         name
         email
@@ -52,8 +39,9 @@ query FetchProductsList {
     current_page
   }
 }
+
 query fetchUsers {
-  users (id: 8) {
+  users(id: 8) {
     data {
       id
       email
@@ -63,7 +51,7 @@ query fetchUsers {
         first_name
         last_name
       }
-      products{
+      products {
         id
         title
         price
@@ -79,44 +67,40 @@ query fetchUsers {
 }
 
 query fetchUsersList {
-  users (limit:40, page:1) {
-      data {
-      	id
-      	email
-      	name
-      	user_profiles {
-        	avatar
-        	first_name
-        	last_name
-      	}
-        products{
-        	title
-        }
+  users(limit: 40, page: 1) {
+    data {
+      id
+      email
+      name
+      user_profiles {
+        avatar
+        first_name
+        last_name
       }
+      products {
+        title
+        price
+        user_id
+      }
+    }
     total
     per_page
   }
 }
 
 query getProfile {
-  myProfile{
+  myProfile {
     id
     email
   }
 }
-mutation qNewUser{
-  newUser(
-    name: "hoai7"
-    email:"hoaiv7n@gmail.com"
-    password:"secret"
-    first_name:"van27"
-    last_name:"nguyen27"
-    avatar:"hoai2.jpg"
-  ){
+
+mutation qNewUser {
+  newUser(name: "hoai7", email: "hoaiv7n@gmail.com", password: "secret", first_name: "van27", last_name: "nguyen27", avatar: "hoai2.jpg") {
     id
     email
     name
-    user_profiles{
+    user_profiles {
       first_name
       last_name
       avatar
@@ -125,7 +109,7 @@ mutation qNewUser{
 }
 
 query Complex {
-  products (id:"2") {
+  first: products(id: "2") {
     data {
       id
       title
@@ -133,7 +117,7 @@ query Complex {
       product_images {
         image
       }
-      users{
+      users {
         id
         name
       }
@@ -141,7 +125,7 @@ query Complex {
     total
     per_page
   }
-  users (id: 8) {
+  second: users(id: 8) {
     data {
       id
       email
@@ -155,5 +139,4 @@ query Complex {
     total
     per_page
   }
-
 }
