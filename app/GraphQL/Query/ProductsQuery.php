@@ -16,6 +16,13 @@ class ProductsQuery extends Query
         'name' => 'Products Query',
         'description' => 'A query of product'
     ];
+    protected $productService;
+
+    function __construct(ProductService $productService) {
+        parent::__construct();
+        $this->productService = $productService;
+
+    }
 
 
     public function type()
@@ -47,8 +54,6 @@ class ProductsQuery extends Query
 
     public function resolve($root, $args, SelectFields $fields)
     {
-        $product_service = new ProductService(new ProductRepository(new Product()));
-
-        return $product_service->resolve($args, $fields);
+        return $this->productService->resolve($args, $fields);
     }
 }
