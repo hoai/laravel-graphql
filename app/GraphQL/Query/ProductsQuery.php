@@ -7,6 +7,8 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 use Rebing\GraphQL\Support\SelectFields;
+use App\Http\Services\ProductService;
+use App\Http\Repositories\ProductRepository;
 
 class ProductsQuery extends Query
 {
@@ -14,6 +16,7 @@ class ProductsQuery extends Query
         'name' => 'Products Query',
         'description' => 'A query of product'
     ];
+
 
     public function type()
     {
@@ -44,26 +47,8 @@ class ProductsQuery extends Query
 
     public function resolve($root, $args, SelectFields $fields)
     {
-        /*$where = function ($query) use ($args) {
-            if (isset($args['id'])) {
-                $query->where('id',$args['id']);
-            }
+        $product_service = new ProductService(new ProductRepository(new Product()));
 
-            if (isset($args['title'])) {
-                $query->where('title','like','%'.$args['title'].'%');
-            }
-        };*/
-        //var_dump(array_keys($fields->getRelations()));exit;
-
-        if (isset($args['id'])) {
-            return Product::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();
-        }
-
-        if (isset($args['title'])) {
-            return Product::with(array_keys($fields->getRelations()))->where('title', $args['title'])->select($fields->getSelect())->paginate();
-        }
-
-        $with = array_keys($fields->getRelations());
-        return Product::with($with)->select($fields->getSelect())->paginate($args['limit'], ['*'], 'page', $args['page']);
+        return $product_service->resolve($args, $fields);
     }
 }
