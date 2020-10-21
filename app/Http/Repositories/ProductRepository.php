@@ -28,14 +28,14 @@ class ProductRepository
         $users =  Product::with($with)->select($fields->getSelect())->paginate($args['limit'], ['*'], 'page', $args['page']);
         echo  json_encode($users); exit;*/
 
-        //echo  json_encode($fields->getRelations()); exit;
+        //echo  json_encode($fields->getSelect()); exit;
 
         $with = array_keys($fields->getRelations());
         $with_columns = [];
         $products_columns  = DB::select( DB::raw("SELECT GROUP_CONCAT(CONCAT(' ', table_name,'.', column_name, ' as `', table_name, '.', column_name, '`')) as name FROM information_schema.columns WHERE table_name = :table_variable"), array(
             'table_variable' => 'products'
         ));
-        $with_columns['products'] = $products_columns[0]->name;
+        $with_columns['products'] = $products_columns[0]->name; //implode(",", $fields->getSelect());
         foreach($with as $key => $val){
 
             $rr  = DB::select( DB::raw("SELECT GROUP_CONCAT(CONCAT(' ', table_name,'.', column_name, ' as `', table_name, '.', column_name, '`')) as name FROM information_schema.columns WHERE table_name = :table_variable"), array(
@@ -54,7 +54,7 @@ class ProductRepository
         }
         $mm = $users->where('products.id' , $args['id'])->select(DB::raw( implode(",", $with_columns) ))->paginate();
 
-       echo  json_encode($mm); exit;
+      echo  json_encode($mm); exit;
         return $users;
 
 
