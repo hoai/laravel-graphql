@@ -58,7 +58,7 @@ class ProductRepository
         }
         $result = [];
         $mm = $users->where('products.id' , $args['id'])->select(DB::raw( implode(",", $with_columns) ))->get()->toArray();//->paginate();
-        //return $mm;
+        //return array_pop($mm);
         //$mm = $mm3->toArray();
         //var_dump($mm);exit;
         //echo  json_encode($mm); exit;
