@@ -15,9 +15,13 @@ class ProductRepository
     }
     public function resolve($args,  $fields)
     {
+        /*
+      if (isset($args['id'])) {
+            $users =  Product::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();
 
-      /* if (isset($args['id'])) {
-            return Product::with(array_keys($fields->getRelations()))->where('id' , $args['id'])->select($fields->getSelect())->paginate();
+            echo  json_encode($users->toArray());exit;
+
+            return $users;
         }
 
         if (isset($args['title'])) {
@@ -26,7 +30,7 @@ class ProductRepository
 
         $with = array_keys($fields->getRelations());
         $users =  Product::with($with)->select($fields->getSelect())->paginate($args['limit'], ['*'], 'page', $args['page']);
-        echo  json_encode($users); exit;*/
+        echo  json_encode($users->toArray()); exit; */
 
         //echo  json_encode($fields->getSelect()); exit;
 
@@ -54,18 +58,30 @@ class ProductRepository
         }
         $result = [];
         $mm = $users->where('products.id' , $args['id'])->select(DB::raw( implode(",", $with_columns) ))->get()->toArray();//->paginate();
+        //return $mm;
         //$mm = $mm3->toArray();
-        //var_dump($mm3->toArray());exit;
-        echo  json_encode($mm); exit;
-        foreach($mm['data'] as $index => $row){
+        //var_dump($mm);exit;
+        //echo  json_encode($mm); exit;
+        foreach($mm as $index => $row){
+                $row  = (array) $row;
                 foreach ($row as $key => $val) {
                     if (strpos($key, ".") !== FALSE) {
                        //echo $key;exit;
+                        $child_group = explode(".", $key);
+
+                        if($child_group[1] == 'id'){
+                            $child_key_id = $val;
+                        }
+
+                        $result[$row['id']][$child_group[0]][$child_key_id][$child_group[1]] = $val;
+                    }
+                    else {
+                        $result[$row['id']][$key] = $val;
                     }
                 }
         }
-      //echo  json_encode($mm); exit;
-        return $mm3;
+        //echo  json_encode(["data" => [array_pop($result)]]); exit;
+        return array_pop($result);
 
 
     }
