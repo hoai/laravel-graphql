@@ -80,7 +80,7 @@ class ProductRepository
                     }
                 }
         }
-        //echo  json_encode(["data" => [array_pop($result)]]); exit;
+       // echo  json_encode(array_pop($result)); exit;
         return array_pop($result);
 
 

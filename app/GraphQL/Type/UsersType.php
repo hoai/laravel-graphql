@@ -43,8 +43,8 @@ class UsersType extends GraphQLType
         ];
     }
 
-    protected function resolveEmailField($root, $args)
+    /*protected function resolveEmailField($root, $args)
     {
         return strtolower($root->email);
-    }
+    }*/
 }
