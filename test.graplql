@@ -1,6 +1,6 @@
 query FetchProducts {
   products(id: "1") {
-    data {
+
       id
       title
       price
@@ -12,15 +12,13 @@ query FetchProducts {
         name
         email
       }
-    }
-    total
-    per_page
+
   }
 }
 
 query FetchProductsList {
   products(limit: 10, page: 2) {
-    data {
+
       id
       title
       price
@@ -34,10 +32,7 @@ query FetchProductsList {
         email
       }
     }
-    total
-    per_page
-    current_page
-  }
+
 }
 
 query fetchUsers {
@@ -108,35 +103,3 @@ mutation qNewUser {
   }
 }
 
-query Complex {
-  first: products(id: "2") {
-    data {
-      id
-      title
-      price
-      product_images {
-        image
-      }
-      users {
-        id
-        name
-      }
-    }
-    total
-    per_page
-  }
-  second: users(id: 8) {
-    data {
-      id
-      email
-      name
-      user_profiles {
-        avatar
-        first_name
-        last_name
-      }
-    }
-    total
-    per_page
-  }
-}

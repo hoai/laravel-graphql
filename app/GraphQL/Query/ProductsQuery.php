@@ -28,8 +28,8 @@ class ProductsQuery extends Query
     public function type()
     {
         //return GraphQL::paginate('products');
-        //return Type::listOf(GraphQL::type('products'));
-        return GraphQL::type('products');
+        return Type::listOf(GraphQL::type('products'));
+        //return GraphQL::type('products');
     }
 
     public function args()

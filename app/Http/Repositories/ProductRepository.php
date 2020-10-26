@@ -57,7 +57,17 @@ class ProductRepository
             $users->join('users', 'products.user_id', '=', 'users.id');
         }
         $result = [];
-        $mm = $users->where('products.id' , $args['id'])->select(DB::raw( implode(",", $with_columns) ))->get()->toArray();//->paginate();
+        if (isset($args['id'])) {
+            $mm = $users->where('products.id' , $args['id'])->select(DB::raw( implode(",", $with_columns) ))->get()->toArray();//->paginate();
+
+        }
+        else if (isset($args['title'])) {
+            $mm = $users->where('products.title' , $args['title'])->select(DB::raw( implode(",", $with_columns) ))->get()->toArray();//->paginate();
+
+        }
+        else {
+             $mm = $users->select(DB::raw( implode(",", $with_columns) ))->get()->toArray();//->paginate();
+        }
         //return array_pop($mm);
         //$mm = $mm3->toArray();
         //var_dump($mm);exit;
@@ -80,8 +90,10 @@ class ProductRepository
                     }
                 }
         }
-       // echo  json_encode(array_pop($result)); exit;
-        return array_pop($result);
+      //echo  json_encode(array_values($result)); exit;
+     // echo  json_encode(array_pop($result)); exit;
+        //return array_pop($result);
+        return array_values($result);
 
 
     }
